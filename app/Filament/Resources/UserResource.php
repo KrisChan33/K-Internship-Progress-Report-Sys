@@ -6,6 +6,7 @@ use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
 use Filament\Forms;
+use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -17,12 +18,13 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-user-circle';
 
     public static function form(Form $form): Form
     {
@@ -31,17 +33,16 @@ class UserResource extends Resource
                 Section::make()->schema([
                         TextInput::make('name')
                         // ->label('First Name')
-                        ->required()->autofocus()->placeholder('name')->maxLength(50),
+                        ->required()->autofocus()->unique(ignoreRecord:true)->placeholder('name')->maxLength(50),
                     TextInput::make('email')
-                        ->required()->placeholder('emai')->maxLength(50),
+                        ->required()->placeholder('email')->unique(ignoreRecord:true)->maxLength(50)->email(),
                     TextInput::make('password')
-                        ->required()->placeholder('password')->maxLength(50),
+                        ->required()->placeholder('password')->maxLength(50)->password(),
                     Select::make('role')
                         ->options([
                             'admin' => 'Admin',
-                            'user' => 'User',
-                        ])
-                        ->default('Admin')->required(),
+                            'member' => 'Member',
+                        ])->default('Admin')->required(),
                 ])->columns(2)->columnSpan(4),
                 ]);
     }
@@ -58,7 +59,7 @@ class UserResource extends Resource
                 TextColumn::make('role')  
                     ->searchable(),
                 TextColumn::make('created_at'),
-                TextColumn::make('updated_at') 
+                TextColumn::make('updated_at'), 
             ])
             ->filters([
                 //

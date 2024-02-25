@@ -1,31 +1,25 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\UserResource\RelationManagers;
 
-use App\Filament\Resources\UserInformationResource\Pages;
-use App\Filament\Resources\UserInformationResource\RelationManagers;
-use App\Models\UserInformation;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Resource;
+use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Tables\Columns\TextInputColumn;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Tabs;
 use Filament\Forms\Components\Tabs\Tab;
-use Filament\Forms\Components\DateTimePicker;
-class UserInformationResource extends Resource
+
+class UserinformationRelationManager extends RelationManager
 {
-    protected static ?string $model = UserInformation::class;
-    protected static ?string $navigationIcon = 'heroicon-o-user-group';
-    protected static ?string $modelLabel= 'Account';
-    public static function form(Form $form): Form
+    protected static string $relationship = 'Userinformation';
+
+    public function form(Form $form): Form
     {
         return $form
         ->schema([
@@ -110,63 +104,35 @@ class UserInformationResource extends Resource
                 ]),
                 Tab::make('Account Setup')->schema([
                     TextInput::make('email')
-                        ->unique(ignoreRecord:true)->required()->placeholder('example@gmil.com')->maxLength(50)->email(),
+                        ->unique()->required()->placeholder('example@gmil.com')->maxLength(50)->email(),
                     TextInput::make('password')
                         ->required()->placeholder('password')->maxLength(50)->password(),
                 ])->columns(2)->columnSpan(2),
         ])->columns(3)->columnSpanFull(),
         ])->columns(3);
     }
-    public static function table(Table $table): Table
+
+    public function table(Table $table): Table
     {
         return $table
+            ->recordTitleAttribute('Userinformation')
             ->columns([
-            TextColumn::make('first name')
-            ->searchable()
-            ->sortable(),
-            TextColumn::make('middle name'),
-            TextColumn::make('role')->default('user'),
-            TextColumn::make('last name'),
-            TextColumn::make('age'),
-            TextColumn::make('gender'),
-            TextColumn::make('date of birth'),
-            TextColumn::make('phone number'),
-            TextColumn::make('address'),
-            TextColumn::make('city'),
-            TextColumn::make('zip code'),
-            TextColumn::make('province'),
-            TextColumn::make('email')
-            ->searchable()
-            ->sortable(),
-            TextColumn::make('password'),
-            TextColumn::make('created_at'),
-            TextColumn::make('updated_at'),
+                Tables\Columns\TextColumn::make('Userinformation'),
             ])
             ->filters([
                 //
             ])
+            ->headerActions([
+                Tables\Actions\CreateAction::make(),
+            ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
-    }
-    public static function getRelations(): array
-    {
-        return [
-            // UserResource\RelationManagers\UserinformationRelationManager::class,
-        ];
-    }
-
-    public static function getPages(): array
-    {
-        return [
-            'index' => Pages\ListUserInformation::route('/'),
-            'create' => Pages\CreateUserInformation::route('/create'),
-            'edit' => Pages\EditUserInformation::route('/{record}/edit'),
-        ];
     }
 }

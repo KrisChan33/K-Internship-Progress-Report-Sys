@@ -10,6 +10,7 @@ class UserInformation extends Model
     use HasFactory;
     protected $table = 'user_informations';
     protected $fillable =[
+        'role',
         'first name',
         'middle name',
         'last name',
@@ -26,4 +27,8 @@ class UserInformation extends Model
         'created at',
         'updated at',
     ];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
