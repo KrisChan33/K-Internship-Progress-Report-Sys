@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\UserResource\Pages;
 use App\Filament\Resources\UserResource\RelationManagers;
 use App\Models\User;
+use App\Models\userinformations;
 use Filament\Forms;
 use Filament\Forms\Components\BelongsToSelect;
 use Filament\Forms\Components\Section;
@@ -25,7 +26,8 @@ class UserResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-user-circle';
-
+    protected static ?string $recordTitleAttribute = 'name';
+    protected static ?int $navigationSort = 1;
     public static function form(Form $form): Form
     {
         return $form
@@ -40,9 +42,10 @@ class UserResource extends Resource
                         ->required()->placeholder('password')->maxLength(50)->password(),
                     Select::make('role')
                         ->options([
-                            'admin' => 'Admin',
+                            'admin' =>'Admin',
                             'member' => 'Member',
-                        ])->default('Admin')->required(),
+                            'user' => 'User',
+                        ])->default('user')->required(),
                 ])->columns(2)->columnSpan(4),
                 ]);
     }
@@ -53,14 +56,10 @@ class UserResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('users.name')
-                    ->searchable()
-                    ->sortable(),
                 TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('role')  
-                    ->searchable(),
+                TextColumn::make('role'),
                 TextColumn::make('created_at'),
                 TextColumn::make('updated_at'),
             ])
@@ -89,5 +88,14 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
+    }
+    public function Userinfo(){
+        return $this->hasMany(userinformations::class);
+    }
+
+    public static function canAccess(): bool
+    {
+        // return auth()->user()?->role === 'admin';
+        return auth()->user()->role = 'admin';
     }
 }

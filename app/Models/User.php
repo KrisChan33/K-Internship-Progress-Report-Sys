@@ -22,9 +22,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'id',
         'role',
-        // 'user_id', //foreign key
+        'name',
+        'email',
+        'password',
+        'created_at',
+        'updated_at',
+
+         // 'user_id', //foreign key
         // 'first_name',
         // 'middle_name',
         // 'last_name',
@@ -36,11 +41,6 @@ class User extends Authenticatable
         // 'city',
         // 'zip_code',
         // 'province',
-        'name',
-        'email',
-        'password',
-        'created_at',
-        'updated_at',
         // 'first_name',
         // 'middle_name',
         // 'last_name',
