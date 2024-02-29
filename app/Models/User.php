@@ -12,9 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     
-    public function userinfo(){
-        return $this->hasOne(UserInformation::class);
-    }
+    // public function userinfo(){
+    //     return $this->hasOne(UserInformation::class);
+    // }
 
     /**
      * The attributes that are mass assignable.
@@ -22,13 +22,25 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
         'role',
+        // 'user_id', //foreign key
+        // 'first_name',
+        // 'middle_name',
+        // 'last_name',
+        // 'age',
+        // 'gender',
+        // 'date_of_birth',
+        // 'phone_number',
+        // 'address',
+        // 'city',
+        // 'zip_code',
+        // 'province',
         'name',
         'email',
         'password',
         'created_at',
         'updated_at',
-        
         // 'first_name',
         // 'middle_name',
         // 'last_name',

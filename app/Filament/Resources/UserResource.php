@@ -31,7 +31,7 @@ class UserResource extends Resource
         return $form
             ->schema([
                 Section::make()->schema([
-                        TextInput::make('name')
+                    TextInput::make('name')
                         // ->label('First Name')
                         ->required()->autofocus()->unique(ignoreRecord:true)->placeholder('name')->maxLength(50),
                     TextInput::make('email')
@@ -53,13 +53,16 @@ class UserResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('users.name')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('email')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('role')  
                     ->searchable(),
                 TextColumn::make('created_at'),
-                TextColumn::make('updated_at'), 
+                TextColumn::make('updated_at'),
             ])
             ->filters([
                 //
@@ -79,7 +82,6 @@ class UserResource extends Resource
             //
         ];
     }
-    
     public static function getPages(): array
     {
         return [

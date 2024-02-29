@@ -14,14 +14,25 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('role')->default('admin');
-            // $table->foreignId('user_information_id')->constrained();
-            $table->string('name');
-            $table->string('password');
-            $table->rememberToken();
+            $table->string('role')->default('member');
+            $table->string('name')->nullable(true);
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            // $table->string('first_name')->nullable(true);
+            // $table->string('middle_name')->nullable(true);
+            // $table->string('last_name')->nullable(true);
+            // $table->string('age')->nullable(true);
+            // $table->string('gender')->nullable(true);
+            // $table->string('date_of_birth')->nullable(true);
+            // $table->string('phone_number')->nullable(true);
+            // $table->string('address')->nullable(true);
+            // $table->string('city')->nullable(true);
+            // $table->string('zip_code')->nullable(true);
+            // $table->string('province')->nullable(true);
+            $table->rememberToken()->nullable(true);
             $table->timestamps();
+            $table->timestamp('email_verified_at')->nullable();
+            
 
         // $table->id();
         // $table->string('first_name');
