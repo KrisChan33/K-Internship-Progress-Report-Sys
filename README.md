@@ -1,6 +1,6 @@
 # K-Internship-Progress-Report-Sys
 
-This is the K-Internship-Progress-Report-Sys, a User Information Management System built with Laravel and Filament.
+This is the K-Internship-Progress-Report-Sys, a User Information Management System built with Laravel.
 
 ## Features
 
