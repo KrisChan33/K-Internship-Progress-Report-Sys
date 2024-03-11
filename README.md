@@ -30,6 +30,10 @@ env
 
 Visit `http://localhost:8000` in your web browser to start using the application.
 
+## Developer
+
+The system is developed by a passionate developer with a background in Laravel. The developer strives to create solutions that simplify complex processes and deliver high-quality, user-friendly applications.
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
@@ -37,8 +41,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
-
-## Developer
-
-The system is developed by a passionate developer with a background in Laravel. The developer strives to create solutions that simplify complex processes and deliver high-quality, user-friendly applications.
 
