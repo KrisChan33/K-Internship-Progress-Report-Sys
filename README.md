@@ -12,10 +12,6 @@ K-Internship-Progress-Report-Sys is a web-based application designed to streamli
 - **Activity Logging:** Interns can log their daily activities, providing a detailed record of their work.
 - **Report Generation:** Generate progress reports for personal record-keeping.
 
-## Developer
-
-The system is developed by a passionate developer with a background in Laravel. The developer strives to create solutions that simplify complex processes and deliver high-quality, user-friendly applications.
-
 ## Installation
 
 1. Clone the repository: `git clone https://github.com/yourusername/K-Internship-Progress-Report-Sys.git`
@@ -41,3 +37,8 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
+
+## Developer
+
+The system is developed by a passionate developer with a background in Laravel. The developer strives to create solutions that simplify complex processes and deliver high-quality, user-friendly applications.
+
