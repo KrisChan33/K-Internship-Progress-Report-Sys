@@ -1,6 +1,7 @@
 # K-Internship-Progress-Report-Sys
 
 This is the K-Internship-Progress-Report-Sys, a User Information Management System built with Laravel.
+K-Internship-Progress-Report-Sys is a web-based application designed to streamline the process of tracking and reporting progress in internships.
 
 ## Features
 
@@ -8,6 +9,12 @@ This is the K-Internship-Progress-Report-Sys, a User Information Management Syst
 - User profile management
 - User information management with multiple tabs for personal information and address
 - Internship progress tracking and reporting
+- **Activity Logging:** Interns can log their daily activities, providing a detailed record of their work.
+- **Report Generation:** Generate progress reports for personal record-keeping.
+
+## Developer
+
+The system is developed by a passionate developer with a background in Laravel. The developer strives to create solutions that simplify complex processes and deliver high-quality, user-friendly applications.
 
 ## Installation
 
